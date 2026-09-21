@@ -1,0 +1,58 @@
+@use '../styles/variables' as *;
+
+.formulario {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  width: 100%;
+  padding: 8px 0 16px;
+
+  &__campo {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    label {
+      font-weight: 500;
+      font-size: 0.75rem;
+      color: $cor-texto-secundario;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    input {
+      width: 100%;
+      padding: 7px 8px;
+      border: 1px solid $cor-borda;
+      border-radius: $raio;
+      font-size: 0.875rem;
+      font-family: $fonte-base;
+      color: $cor-texto;
+      background: #fff;
+
+      &:focus {
+        outline: none;
+        border-color: $cor-primaria;
+        box-shadow: 0 0 0 2px rgba(31, 78, 121, 0.15);
+      }
+    }
+  }
+
+  &__botao {
+    flex: 0 0 auto;
+    padding: 8px 32px;
+    background: $cor-primaria;
+    color: #fff;
+    border: 1px solid $cor-primaria;
+    border-radius: $raio;
+    font-weight: 600;
+    font-size: 0.875rem;
+    font-family: $fonte-base;
+    cursor: pointer;
+
+    &:hover:not(:disabled) { background: $cor-primaria-hover; }
+    &:disabled { opacity: 0.5; cursor: not-allowed; }
+  }
+}

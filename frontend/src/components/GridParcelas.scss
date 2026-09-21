@@ -1,0 +1,102 @@
+@use '../styles/variables' as *;
+
+$altura-grupo: 36px;
+
+.grid-container {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  overflow: auto;
+  overscroll-behavior: contain;
+  background: #fff;
+}
+
+.grid {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.8125rem;
+
+  &__col--data { width: 10%; }
+  &__col--valor { width: 12%; }
+  &__col--saldo { width: 12%; }
+  &__col--consolidada { width: 7%; }
+  &__col--total { width: 10%; }
+  &__col--amortizacao { width: 10%; }
+  &__col--saldo-principal { width: 10%; }
+  &__col--provisao { width: 10%; }
+  &__col--acumulado { width: 10%; }
+  &__col--pago { width: 9%; }
+
+  thead th {
+    color: #fff;
+    text-align: right;
+    padding: 8px 10px;
+    border-right: 1px solid rgba(255, 255, 255, 0.22);
+    border-bottom: 1px solid $cor-primaria-hover;
+    white-space: nowrap;
+  }
+
+  thead th:last-child { border-right: none; }
+
+  thead tr:first-child {
+    height: $altura-grupo;
+  }
+
+  thead tr:first-child th {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    height: $altura-grupo;
+    padding: 0 10px;
+    vertical-align: middle;
+    background: $cor-primaria;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  thead tr:nth-child(2) th {
+    position: sticky;
+    top: $altura-grupo;
+    z-index: 2;
+    background: $cor-primaria-clara;
+    font-weight: 600;
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  thead tr:nth-child(2) th:first-child,
+  thead tr:nth-child(2) th:nth-child(4) {
+    text-align: left;
+  }
+
+  tbody td {
+    padding: 6px 10px;
+    border-right: 1px solid $cor-borda;
+    border-bottom: 1px solid $cor-borda;
+    text-align: right;
+    font-family: $fonte-numeros;
+    font-size: 0.75rem;
+    font-variant-numeric: tabular-nums;
+    color: $cor-texto;
+    white-space: nowrap;
+  }
+
+  tbody td:last-child { border-right: none; }
+  tbody tr:last-child td { border-bottom: none; }
+
+  tbody tr:nth-child(even) { background: $cor-zebra; }
+
+  td:nth-child(1), td:nth-child(4) { text-align: left; }
+  td:nth-child(4) { color: $cor-texto-secundario; }
+
+  &__linha--parcela {
+    background: $cor-linha-parcela;
+    td { font-weight: 600; }
+  }
+
+  &__linha--fim-mes td { color: $cor-texto-secundario; }
+}

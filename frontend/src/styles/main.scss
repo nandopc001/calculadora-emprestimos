@@ -1,0 +1,39 @@
+@use 'variables' as *;
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root { height: 100%; }
+
+body {
+  font-family: $fonte-base;
+  color: $cor-texto;
+  background: #fff;
+  font-size: 14px;
+}
+
+.pagina {
+  height: 100%;              // altura = viewport, não cresce com o conteúdo
+  width: 100%;
+  max-width: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 24px;
+  overflow: hidden;          // a página não rola; o grid rola internamente
+
+  h1 {
+    flex: 0 0 auto;          // nunca encolhe
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #1f2a37;
+  }
+
+  &__erro {
+    flex: 0 0 auto;
+    color: $cor-erro;
+    background: #fdecea;
+    border: 1px solid #f5c6c2;
+    border-radius: $raio;
+    padding: 10px 14px;
+  }
+}
