@@ -28,8 +28,7 @@ export function GridParcelas({ parcelas }: Props) {
             <th colSpan={3} className="grid__grupo">Empréstimo</th>
             <th colSpan={2} className="grid__grupo">Parcela</th>
             <th colSpan={2} className="grid__grupo">Principal</th>
-            <th colSpan={2} className="grid__grupo">Juros Acumulado</th>
-            <th colSpan={1} className="grid__grupo">Pago</th>
+            <th colSpan={3} className="grid__grupo">Juros</th>
           </tr>
           {/* Linha 2: colunas */}
           <tr>
