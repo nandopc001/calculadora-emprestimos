@@ -59,7 +59,8 @@ public class EmprestimoService {
                 if (!fimMes.isBefore(pagamento)) break;   // chegou no mês da parcela
                 BigDecimal juros = calculadoraJuros.calcularJuros(saldo, ultimoPagamento, fimMes, taxaJuros);
                 jurosAcumulados = jurosAcumulados.add(juros);
-                linhas.add(new ParcelaResponse(fimMes, valorEmprestimo, saldo, null, ZERO, ZERO, saldo,
+                BigDecimal saldoDevedor = saldo.add(jurosAcumulados);
+                linhas.add(new ParcelaResponse(fimMes, valorEmprestimo, saldoDevedor, null, ZERO, ZERO, saldo,
                         juros, jurosAcumulados, ZERO));
                 mes = mes.plusMonths(1);
             }
@@ -69,9 +70,8 @@ public class EmprestimoService {
             BigDecimal jurosPago = calculadoraJuros.calcularJuros(saldo, ultimoPagamento, pagamento, taxaJuros);
             BigDecimal provisaoPeriodo = jurosPago.subtract(jurosAcumulados);
             BigDecimal total = amortizacao.add(jurosPago);
-            BigDecimal saldoAntes = saldo;
             saldo = saldo.subtract(amortizacao);
-            linhas.add(new ParcelaResponse(pagamento, valorEmprestimo, saldoAntes, k + "/" + n, total,
+            linhas.add(new ParcelaResponse(pagamento, valorEmprestimo, saldo, k + "/" + n, total,
                     amortizacao, saldo, provisaoPeriodo, ZERO, jurosPago));
             jurosAcumulados = ZERO;
             ultimoPagamento = pagamento;
